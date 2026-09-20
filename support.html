@@ -146,20 +146,24 @@ h1 {
 .summary ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .85rem; }
 
 .summary li {
-  display: grid;
-  grid-template-columns: 1.15rem 1fr;
-  gap: .75rem;
+  /* Not grid: an <li> here is "<strong>lead</strong> then prose", and a grid
+     container makes the bare text run its own item, which lands in the narrow
+     bullet column and breaks one word per line. Keep the text in normal flow
+     and draw the bullet out of it. */
+  position: relative;
+  padding-left: 1.9rem;
   font-size: 1.0625rem;
 }
 
 .summary li::before {
   content: "";
+  position: absolute;
+  left: .33rem;
+  top: .58rem;
   width: .5rem;
   height: .5rem;
   border-radius: 50%;
   background: var(--accent);
-  margin-top: .55rem;
-  justify-self: center;
 }
 
 .summary strong { font-weight: 600; }
