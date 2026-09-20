@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Report Terms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Public+Sans:wght@400;500;600&family=Space+Mono:wght@400&display=swap">
+<style>
+:root {
+  --paper: #ffffff;
+  --mist: #f7f7f8;
+  --sunken: #efeff1;
+  --rule: #e1e1e5;
+  --ink: #101014;
+  --muted: #52525b;
+  --subtle: #8e8e99;
+  --accent: #2f27ce;
+  --accent-soft: #eeedfb;
+  --shadow: 0 1px 2px rgba(16, 16, 20, .04), 0 8px 24px -16px rgba(16, 16, 20, .18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17171a;
+    --mist: #0b0b0d;
+    --sunken: #212126;
+    --rule: #2e2e35;
+    --ink: #f2f2f5;
+    --muted: #a1a1ac;
+    --subtle: #6e6e7a;
+    --accent: #8b85ff;
+    --accent-soft: #1e1b3a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .7);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #17171a;
+  --mist: #0b0b0d;
+  --sunken: #212126;
+  --rule: #2e2e35;
+  --ink: #f2f2f5;
+  --muted: #a1a1ac;
+  --subtle: #6e6e7a;
+  --accent: #8b85ff;
+  --accent-soft: #1e1b3a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--mist);
+  color: var(--ink);
+  font-family: "Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+/* Masthead ---------------------------------------------------------------- */
+
+.masthead { display: flex; flex-direction: column; gap: 1rem; }
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.0625rem;
+  letter-spacing: -.02em;
+}
+
+.mark .glyph {
+  width: 2rem;
+  height: 2rem;
+  border-radius: .5rem;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-size: .75rem;
+  letter-spacing: -.04em;
+  flex: none;
+}
+
+h1 {
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.125rem, 6vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.stamp {
+  font-family: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
+}
+
+.rule-accent { height: 2px; background: var(--accent); border-radius: 2px; }
+
+/* Summary ----------------------------------------------------------------- */
+
+.summary {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: .75rem;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.summary h2 {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+  font-weight: 400;
+}
+
+.summary ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+
+.summary li {
+  display: grid;
+  grid-template-columns: 1.15rem 1fr;
+  gap: .75rem;
+  font-size: 1.0625rem;
+}
+
+.summary li::before {
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: .55rem;
+  justify-self: center;
+}
+
+.summary strong { font-weight: 600; }
+
+/* Sections ---------------------------------------------------------------- */
+
+section { display: flex; flex-direction: column; gap: .85rem; }
+
+h2.section-title {
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.375rem;
+  letter-spacing: -.02em;
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  margin: .75rem 0 -.35rem;
+}
+
+p { margin: 0; color: var(--muted); }
+p.lede { color: var(--ink); font-size: 1.125rem; }
+
+ul.body { margin: 0; padding-left: 1.15rem; color: var(--muted); display: flex; flex-direction: column; gap: .5rem; }
+
+a { color: var(--accent); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+strong { color: var(--ink); font-weight: 600; }
+
+/* Table ------------------------------------------------------------------- */
+
+.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: .75rem; background: var(--paper); }
+
+table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .9375rem; }
+
+th, td { text-align: left; padding: .8rem 1rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+
+th {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-weight: 400;
+  font-size: .6875rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  background: var(--sunken);
+  white-space: nowrap;
+}
+
+td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+td { color: var(--muted); }
+
+/* Callout ----------------------------------------------------------------- */
+
+.callout {
+  background: var(--accent-soft);
+  border-radius: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.callout .label {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.callout p { color: var(--ink); }
+
+/* Contact ----------------------------------------------------------------- */
+
+.contact {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: .75rem;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.contact .addr {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  color: var(--subtle);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a { transition: opacity .15s ease; }
+  a:hover { opacity: .75; }
+}
+.zero {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: .75rem;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.zero .label {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: #b91c1c;
+}
+.zero p { color: #450a0a; }
+.zero strong { color: #450a0a; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .zero { background: #2a1212; border-color: #5c2626; }
+  :root:not([data-theme="light"]) .zero .label { color: #f87171; }
+  :root:not([data-theme="light"]) .zero p, :root:not([data-theme="light"]) .zero strong { color: #fecaca; }
+}
+:root[data-theme="dark"] .zero { background: #2a1212; border-color: #5c2626; }
+:root[data-theme="dark"] .zero .label { color: #f87171; }
+:root[data-theme="dark"] .zero p, :root[data-theme="dark"] .zero strong { color: #fecaca; }
+
+.placeholder {
+  background: var(--sunken);
+  border: 1px dashed var(--subtle);
+  border-radius: .5rem;
+  padding: .15rem .45rem;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .9em;
+  color: var(--ink);
+}
+
+ol.numbered { counter-reset: clause; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+ol.numbered li { display: grid; grid-template-columns: 1.5rem 1fr; gap: .7rem; color: var(--muted); }
+ol.numbered li::before {
+  counter-increment: clause; content: counter(clause);
+  font-family: "Space Mono", ui-monospace, monospace; font-size: .75rem;
+  color: var(--accent); margin-top: .3rem;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mark"><span class="glyph">UR</span> Urban Report</div>
+    <h1>Terms of Service</h1>
+    <div class="stamp"><span>Last updated 19 September 2026</span><span>Version 1.0</span></div>
+    <div class="rule-accent"></div>
+  </header>
+
+  <section>
+    <p class="lede">These terms are the agreement between you and Urban Report App ("we", "us") for the Urban Report app. By creating an account you accept them. If you do not accept them, do not use the app.</p>
+  </section>
+
+  <div class="zero">
+    <span class="label">Zero tolerance</span>
+    <p><strong>There is no tolerance for objectionable content or abusive behaviour on Urban Report.</strong> Content that is abusive, harassing, hateful, threatening, defamatory, sexually explicit, or that targets a person or group, is removed and the account behind it is suspended or terminated. We act on reports within 24 hours.</p>
+  </div>
+
+  <section>
+    <h2 class="section-title">1. Who may use Urban Report</h2>
+    <p>You must be at least 13 years old. If you are under the age of majority where you live, you may use the app only with a parent or guardian's involvement.</p>
+    <p>One account per person. You are responsible for what happens under your account, including keeping your password to yourself.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">2. What Urban Report is — and is not</h2>
+    <p>Urban Report is a noticeboard. Residents post what they observe on their street, and other residents and participating city departments can read it.</p>
+    <p><strong>It is not an emergency service.</strong> Nobody monitors reports around the clock. Posting here does not contact police, fire or paramedics, and no response of any kind is guaranteed. If someone is in danger, call 911.</p>
+    <p>Reports are written by other residents. They are not verified by us, and they may be wrong, incomplete, or out of date. A status update from a city department means a person at that department posted it — it is not a commitment to act, and response times are theirs rather than ours.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">3. What you may not post</h2>
+    <p>You agree not to post anything that:</p>
+    <ol class="numbered">
+      <li>harasses, threatens, defames or incites violence against anyone;</li>
+      <li>is hateful towards a person or group, including on the basis of race, ethnicity, national origin, religion, disability, sex, gender identity, sexual orientation or age;</li>
+      <li>is sexually explicit, or sexualises a minor in any way;</li>
+      <li>reveals private information about another person — a home address, a phone number, a workplace, a vehicle plate — without their consent;</li>
+      <li>you know to be false, or that you post to mislead, inflame or retaliate;</li>
+      <li>impersonates another person, a business, or a public official or agency;</li>
+      <li>you do not have the right to post, including photographs and video of other people taken without their knowledge in a private place;</li>
+      <li>advertises, solicits, or promotes anything commercial;</li>
+      <li>breaks the law, or encourages someone else to.</li>
+    </ol>
+    <p>Filing a knowingly false report — particularly a missing person, a dangerous situation or an accident — wastes the attention of neighbours and city staff, and can be a criminal offence. It ends your account.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">4. Reports about other people</h2>
+    <p>Missing person reports carry a special responsibility. Post one only if you have a genuine, good-faith belief the person is missing, and only with information you are entitled to share. If the person is a minor, you must be their parent or guardian, or acting with their parent or guardian's knowledge.</p>
+    <p>When a missing person report is marked resolved, the app withdraws the photograph and description automatically. Do not re-post them.</p>
+    <p>Do not post photographs of identifiable people as the subject of a complaint. Report the pothole, not the neighbour.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">5. Your content</h2>
+    <p>What you post remains yours. By posting it you give us a non-exclusive, worldwide, royalty-free licence to store, display and distribute it within the app for as long as the report exists, so that we can show it to the neighbours it is meant for. This licence ends when the content is deleted, except for copies retained in moderation records as described below.</p>
+    <p>You confirm you have the rights to everything you post.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">6. Moderation, blocking and termination</h2>
+    <p>You can flag any report or comment, and you can block any account — blocking hides comments in both directions. Three flags hide content automatically, pending review.</p>
+    <p>We may remove content, suspend an account, or terminate an account, with or without notice, where we believe these terms have been broken. Content removed by moderation is archived rather than erased so there is a record of the decision.</p>
+    <p><strong>Anonymous reports are anonymous to other users, not to moderators.</strong> We can see who posted an anonymous report, and we will use that to act on abuse.</p>
+    <p>You can delete your account at any time from Profile → Delete account. It is immediate and irreversible.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">7. Privacy</h2>
+    <p>What we collect and why is set out in the <a href="https://claude.ai/code/artifact/9b586b8c-85be-4a8e-afa5-f5d4627adbb1">privacy policy</a>, which forms part of these terms.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">8. No warranty</h2>
+    <p>Urban Report is provided "as is" and "as available". To the fullest extent the law allows, we disclaim all warranties, express or implied, including fitness for a particular purpose and accuracy of content. We do not warrant that the app will be uninterrupted, timely, or free of error, or that any report is true.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">9. Limitation of liability</h2>
+    <p>To the fullest extent the law allows, we are not liable for any indirect, incidental, special, consequential or punitive damages, or for any loss arising from your reliance on a report, from a delay or failure of a notification, or from the act or omission of any other user or city department.</p>
+    <p>Nothing here limits liability that cannot be limited by law, including for death or personal injury caused by negligence, or for fraud.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">10. Indemnity</h2>
+    <p>You agree to indemnify us against claims arising from content you post or from your breach of these terms.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">11. Changes</h2>
+    <p>We may update these terms. If a change materially affects your rights we will say so in the app before it takes effect. Continuing to use Urban Report after that means you accept the change.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">12. Governing law</h2>
+    <p>These terms are governed by the laws of the United States of America. You and Urban Report App agree to bring any dispute in the courts of the United States, without regard to conflict-of-law rules.</p>
+  </section>
+
+  <section class="contact">
+    <h2 class="section-title" style="border-top:0; padding-top:0;">Contact</h2>
+    <p>Questions about these terms, or to report content or an account:</p>
+    <div class="addr">Entitycorpamerica@gmail.com</div>
+  </section>
+
+  <footer>
+    <span>Urban Report</span>
+    <span>Terms of Service v1.0</span>
+    <span>19 September 2026</span>
+  </footer>
+</div>
+</body>
+</html>

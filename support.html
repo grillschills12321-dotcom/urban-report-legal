@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Report Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Public+Sans:wght@400;500;600&family=Space+Mono:wght@400&display=swap">
+<style>
+:root {
+  --paper: #ffffff;
+  --mist: #f7f7f8;
+  --sunken: #efeff1;
+  --rule: #e1e1e5;
+  --ink: #101014;
+  --muted: #52525b;
+  --subtle: #8e8e99;
+  --accent: #2f27ce;
+  --accent-soft: #eeedfb;
+  --shadow: 0 1px 2px rgba(16, 16, 20, .04), 0 8px 24px -16px rgba(16, 16, 20, .18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17171a;
+    --mist: #0b0b0d;
+    --sunken: #212126;
+    --rule: #2e2e35;
+    --ink: #f2f2f5;
+    --muted: #a1a1ac;
+    --subtle: #6e6e7a;
+    --accent: #8b85ff;
+    --accent-soft: #1e1b3a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .7);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #17171a;
+  --mist: #0b0b0d;
+  --sunken: #212126;
+  --rule: #2e2e35;
+  --ink: #f2f2f5;
+  --muted: #a1a1ac;
+  --subtle: #6e6e7a;
+  --accent: #8b85ff;
+  --accent-soft: #1e1b3a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--mist);
+  color: var(--ink);
+  font-family: "Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+/* Masthead ---------------------------------------------------------------- */
+
+.masthead { display: flex; flex-direction: column; gap: 1rem; }
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.0625rem;
+  letter-spacing: -.02em;
+}
+
+.mark .glyph {
+  width: 2rem;
+  height: 2rem;
+  border-radius: .5rem;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-size: .75rem;
+  letter-spacing: -.04em;
+  flex: none;
+}
+
+h1 {
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.125rem, 6vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.stamp {
+  font-family: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
+}
+
+.rule-accent { height: 2px; background: var(--accent); border-radius: 2px; }
+
+/* Summary ----------------------------------------------------------------- */
+
+.summary {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: .75rem;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.summary h2 {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+  font-weight: 400;
+}
+
+.summary ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+
+.summary li {
+  display: grid;
+  grid-template-columns: 1.15rem 1fr;
+  gap: .75rem;
+  font-size: 1.0625rem;
+}
+
+.summary li::before {
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: .55rem;
+  justify-self: center;
+}
+
+.summary strong { font-weight: 600; }
+
+/* Sections ---------------------------------------------------------------- */
+
+section { display: flex; flex-direction: column; gap: .85rem; }
+
+h2.section-title {
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.375rem;
+  letter-spacing: -.02em;
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  margin: .75rem 0 -.35rem;
+}
+
+p { margin: 0; color: var(--muted); }
+p.lede { color: var(--ink); font-size: 1.125rem; }
+
+ul.body { margin: 0; padding-left: 1.15rem; color: var(--muted); display: flex; flex-direction: column; gap: .5rem; }
+
+a { color: var(--accent); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+strong { color: var(--ink); font-weight: 600; }
+
+/* Table ------------------------------------------------------------------- */
+
+.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: .75rem; background: var(--paper); }
+
+table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .9375rem; }
+
+th, td { text-align: left; padding: .8rem 1rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+
+th {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-weight: 400;
+  font-size: .6875rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  background: var(--sunken);
+  white-space: nowrap;
+}
+
+td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+td { color: var(--muted); }
+
+/* Callout ----------------------------------------------------------------- */
+
+.callout {
+  background: var(--accent-soft);
+  border-radius: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.callout .label {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.callout p { color: var(--ink); }
+
+/* Contact ----------------------------------------------------------------- */
+
+.contact {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: .75rem;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.contact .addr {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  color: var(--subtle);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a { transition: opacity .15s ease; }
+  a:hover { opacity: .75; }
+}
+/* Support-specific ---------------------------------------------------------- */
+
+.emergency {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.emergency .label {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #b91c1c;
+}
+.emergency p { color: #450a0a; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .emergency { background: #2a1212; border-color: #5c2626; }
+  :root:not([data-theme="light"]) .emergency .label { color: #f87171; }
+  :root:not([data-theme="light"]) .emergency p { color: #fecaca; }
+}
+:root[data-theme="dark"] .emergency { background: #2a1212; border-color: #5c2626; }
+:root[data-theme="dark"] .emergency .label { color: #f87171; }
+:root[data-theme="dark"] .emergency p { color: #fecaca; }
+
+.faq { display: flex; flex-direction: column; gap: 0; }
+
+details {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.05rem 0;
+}
+details:first-of-type { border-top: 1px solid var(--rule); }
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: var(--ink);
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "+";
+  font-family: "Space Mono", ui-monospace, monospace;
+  color: var(--accent);
+  font-size: 1.25rem;
+  line-height: 1;
+  flex: none;
+}
+details[open] summary::after { content: "\2013"; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 3px; }
+
+details > p, details > ul { margin-top: .7rem; }
+details > ul { padding-left: 1.15rem; color: var(--muted); display: flex; flex-direction: column; gap: .4rem; }
+
+.steps { counter-reset: step; display: flex; flex-direction: column; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+.steps li { display: grid; grid-template-columns: 1.6rem 1fr; gap: .8rem; color: var(--muted); }
+.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .8125rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: .35rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  margin-top: .1rem;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mark"><span class="glyph">UR</span> Urban Report</div>
+    <h1>Support</h1>
+    <div class="stamp"><span>Urban Report for iPhone</span><span>Version 1.0</span></div>
+    <div class="rule-accent"></div>
+  </header>
+
+  <div class="emergency">
+    <span class="label">Urban Report is not an emergency service</span>
+    <p>Nobody monitors these reports around the clock, and posting here does not contact police, fire or paramedics. If someone is in danger or needs help right now, call 911 first. You can post afterwards so your neighbours know.</p>
+  </div>
+
+  <section>
+    <p class="lede">Urban Report is a neighbourhood noticeboard for New York, Miami and Los Angeles. Residents post what is happening on their street; other residents and their city can see it. Below are the questions that come up most.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Common questions</h2>
+    <div class="faq">
+
+      <details>
+        <summary>How do I stop my location being attached to a report?</summary>
+        <p>It is not attached unless you ask for it. On the last step before posting, "Share my location on this report" is off by default, and it applies to that one report only.</p>
+        <p>The pin on a report is separate — that is the place you are reporting about, and every report has one.</p>
+      </details>
+
+      <details>
+        <summary>Do my photos give away where I live?</summary>
+        <p>Cameras write GPS coordinates into photo and video files. Urban Report removes that on your phone before anything is uploaded, then checks the result and refuses the upload if anything survived.</p>
+        <p>What it cannot do is change what the picture shows. A photo taken from your doorstep still shows your doorstep.</p>
+      </details>
+
+      <details>
+        <summary>I'm not getting notifications.</summary>
+        <p>Work through these in order:</p>
+        <ol class="steps">
+          <li>Open Profile → Notifications. If it offers "Allow notifications", tap it — the app has not been granted permission yet.</li>
+          <li>If it says notifications are blocked, turn them back on in iOS Settings → Urban Report → Notifications.</li>
+          <li>Check "Notify me about nearby reports" is on.</li>
+          <li>Check your radius. Something two miles away will not reach you on a one-mile radius.</li>
+          <li>Check quiet hours. They use your home city's timezone, not your phone's.</li>
+          <li>Check your categories. Nothing selected means every category, which is usually what you want.</li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>Why did my report disappear?</summary>
+        <p>Most likely it expired. Reports are built to come down on their own: traffic after a couple of hours, a road closure when the event ends. Potholes and missing pets stay until somebody marks them resolved.</p>
+        <p>A report can also be hidden if several people flag it, pending review.</p>
+      </details>
+
+      <details>
+        <summary>How do I post without my name?</summary>
+        <p>Turn on "Post anonymously" on the last step. Your name and profile are hidden from everyone, including city officials.</p>
+        <p>Moderators can still see who posted. That is deliberate: without it, anonymity would be a free pass for abuse.</p>
+      </details>
+
+      <details>
+        <summary>Someone is harassing me in the comments.</summary>
+        <p>Open any comment they left and choose Block. Blocking hides comments in both directions and stops either of you replying to the other.</p>
+        <p>Their reports stay visible — this app is also how people hear about a gas leak. To report the content itself, use the flag on the report or comment; three flags hide it pending review.</p>
+      </details>
+
+      <details>
+        <summary>How do I delete my account?</summary>
+        <p>Profile → Delete account. You type DELETE to confirm. It is immediate: no grace period, no recovery.</p>
+        <p>Your reports go with it, including any a city department has already responded to, and so do the comments other people left on them.</p>
+      </details>
+
+      <details>
+        <summary>A city department responded to my report. What does that mean?</summary>
+        <p>Verified officials for your city can post status updates — acknowledged, in progress, resolved — which appear on the report with the department's name. It means a real person at that department has seen it.</p>
+        <p>It is not a service guarantee, and response times are theirs, not ours.</p>
+      </details>
+
+      <details>
+        <summary>Which cities does this work in?</summary>
+        <p>New York, Miami and Los Angeles for the pilot. You pick a home city on your profile, and can change the city on any individual report.</p>
+      </details>
+
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2 class="section-title" style="border-top:0; padding-top:0;">Still stuck?</h2>
+    <p>Email us and describe what happened and what you expected instead. Include your city and roughly when it happened — it makes a real difference to how fast this gets fixed.</p>
+    <div class="addr">Entitycorpamerica@gmail.com</div>
+    <p style="margin-top:.5rem">We aim to reply within two business days.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Privacy</h2>
+    <p>What the app collects and why is set out in full in the <a href="https://claude.ai/code/artifact/9b586b8c-85be-4a8e-afa5-f5d4627adbb1">privacy policy</a>, and the rules for using Urban Report are in the <a href="https://claude.ai/code/artifact/c04b8234-71e5-4cdf-9595-f6408567dbb3">terms of service</a>.</p>
+  </section>
+
+  <footer>
+    <span>Urban Report</span>
+    <span>Support</span>
+    <span>New York &middot; Miami &middot; Los Angeles</span>
+  </footer>
+</div>
+</body>
+</html>

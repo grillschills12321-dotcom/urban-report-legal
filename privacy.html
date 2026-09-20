@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urban Report Privacy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Public+Sans:wght@400;500;600&family=Space+Mono:wght@400&display=swap">
+<style>
+:root {
+  --paper: #ffffff;
+  --mist: #f7f7f8;
+  --sunken: #efeff1;
+  --rule: #e1e1e5;
+  --ink: #101014;
+  --muted: #52525b;
+  --subtle: #8e8e99;
+  --accent: #2f27ce;
+  --accent-soft: #eeedfb;
+  --shadow: 0 1px 2px rgba(16, 16, 20, .04), 0 8px 24px -16px rgba(16, 16, 20, .18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17171a;
+    --mist: #0b0b0d;
+    --sunken: #212126;
+    --rule: #2e2e35;
+    --ink: #f2f2f5;
+    --muted: #a1a1ac;
+    --subtle: #6e6e7a;
+    --accent: #8b85ff;
+    --accent-soft: #1e1b3a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .7);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #17171a;
+  --mist: #0b0b0d;
+  --sunken: #212126;
+  --rule: #2e2e35;
+  --ink: #f2f2f5;
+  --muted: #a1a1ac;
+  --subtle: #6e6e7a;
+  --accent: #8b85ff;
+  --accent-soft: #1e1b3a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -16px rgba(0, 0, 0, .7);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--mist);
+  color: var(--ink);
+  font-family: "Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+/* Masthead ---------------------------------------------------------------- */
+
+.masthead { display: flex; flex-direction: column; gap: 1rem; }
+
+.mark {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.0625rem;
+  letter-spacing: -.02em;
+}
+
+.mark .glyph {
+  width: 2rem;
+  height: 2rem;
+  border-radius: .5rem;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-size: .75rem;
+  letter-spacing: -.04em;
+  flex: none;
+}
+
+h1 {
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.125rem, 6vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.stamp {
+  font-family: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
+}
+
+.rule-accent { height: 2px; background: var(--accent); border-radius: 2px; }
+
+/* Summary ----------------------------------------------------------------- */
+
+.summary {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: .75rem;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.summary h2 {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+  font-weight: 400;
+}
+
+.summary ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+
+.summary li {
+  display: grid;
+  grid-template-columns: 1.15rem 1fr;
+  gap: .75rem;
+  font-size: 1.0625rem;
+}
+
+.summary li::before {
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: .55rem;
+  justify-self: center;
+}
+
+.summary strong { font-weight: 600; }
+
+/* Sections ---------------------------------------------------------------- */
+
+section { display: flex; flex-direction: column; gap: .85rem; }
+
+h2.section-title {
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.375rem;
+  letter-spacing: -.02em;
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  margin: .75rem 0 -.35rem;
+}
+
+p { margin: 0; color: var(--muted); }
+p.lede { color: var(--ink); font-size: 1.125rem; }
+
+ul.body { margin: 0; padding-left: 1.15rem; color: var(--muted); display: flex; flex-direction: column; gap: .5rem; }
+
+a { color: var(--accent); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+strong { color: var(--ink); font-weight: 600; }
+
+/* Table ------------------------------------------------------------------- */
+
+.table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: .75rem; background: var(--paper); }
+
+table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .9375rem; }
+
+th, td { text-align: left; padding: .8rem 1rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+
+th {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-weight: 400;
+  font-size: .6875rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  background: var(--sunken);
+  white-space: nowrap;
+}
+
+td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+td { color: var(--muted); }
+
+/* Callout ----------------------------------------------------------------- */
+
+.callout {
+  background: var(--accent-soft);
+  border-radius: .75rem;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.callout .label {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.callout p { color: var(--ink); }
+
+/* Contact ----------------------------------------------------------------- */
+
+.contact {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: .75rem;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.contact .addr {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  color: var(--subtle);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a { transition: opacity .15s ease; }
+  a:hover { opacity: .75; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="mark"><span class="glyph">UR</span> Urban Report</div>
+    <h1>Privacy Policy</h1>
+    <div class="stamp">
+      <span>Last updated 19 September 2026</span>
+      <span>Version 1.0</span>
+    </div>
+    <div class="rule-accent"></div>
+  </header>
+
+  <div class="summary">
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>A report carries the place you are reporting about — not where you are.</strong> Your own position is attached only when you switch it on for one specific report, and it is read once at the moment you post.</li>
+      <li><strong>Photos and videos are stripped of location data on your phone, before upload.</strong> The file is checked after stripping, and refused rather than sent if anything survived.</li>
+      <li><strong>We do not track you, sell your data, or share it with advertisers.</strong> There is no advertising SDK and no analytics profile.</li>
+      <li><strong>You can delete your account from inside the app, and it is immediate.</strong> No grace period, no recovery, nothing retained for later.</li>
+    </ul>
+  </div>
+
+  <section>
+    <p class="lede">Urban Report is a neighbourhood noticeboard. Residents post what is happening on their street — traffic, potholes, road closures, block parties, missing people and pets — so other residents and their city can see it. This policy explains exactly what the app collects and why.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">What we collect</h2>
+    <p>Everything in this table is collected to make the app work. None of it is used for tracking or advertising, and none of it is shared with data brokers.</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Data</th><th scope="col">Why we need it</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Email address</td><td>To create your account and sign you in.</td></tr>
+          <tr><td>Display name</td><td>Shown on reports and comments you did not post anonymously.</td></tr>
+          <tr><td>Account ID</td><td>Ties your reports, comments and settings to you.</td></tr>
+          <tr><td>Precise location</td><td>Three separate uses: the pin on a report, the centre of your notification radius, and — only if you switch it on for one report — your own position at the moment you posted.</td></tr>
+          <tr><td>Photos and videos</td><td>Attached to reports, up to ten each. Location metadata is removed on your device before upload.</td></tr>
+          <tr><td>Report content</td><td>Titles, descriptions, comments and confirmations you write.</td></tr>
+          <tr><td>Device token</td><td>A push identifier, so a notification can reach your handset. Removed when you sign out.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Location, in detail</h2>
+    <p>Location is the part of this app worth being precise about, because there are three different things that could be called "your location" and they are not the same.</p>
+
+    <h3>The report pin</h3>
+    <p>Every report carries a place — the pothole, the closure, the corner where a cat was last seen. You choose it by dropping a pin, searching an address, or tapping "use my current location". This is public: it is the whole point of the report.</p>
+
+    <h3>Your own position</h3>
+    <p>Separately, a report can carry where <em>you</em> were standing. This is <strong>off by default and set per report</strong>. When you turn it on, your position is read once as you post and shown publicly on that report. It is not tracked afterwards, and turning it on for one report does not turn it on for the next.</p>
+
+    <h3>Your notification area</h3>
+    <p>To alert you about nearby reports we need a centre point and a radius. By default the centre is your home city. You can instead set it to your current location, which is stored as a single coordinate on your account and updated only when you ask.</p>
+
+    <div class="callout">
+      <span class="label">What the app never does</span>
+      <p>Urban Report does not collect location in the background, does not build a location history, and does not read your position unless you have taken an action that needs it.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Photos and videos</h2>
+    <p>Cameras write GPS coordinates into the files they produce. Attaching an unmodified photo to an anonymous report would publish the photographer's exact position and defeat both privacy controls at once, so the app removes that metadata before anything leaves your device.</p>
+    <ul class="body">
+      <li><strong>Photos</strong> are re-encoded and then stripped of EXIF, XMP and comment blocks.</li>
+      <li><strong>Videos</strong> have their location tags removed from the file container in place.</li>
+      <li><strong>Both are verified after stripping.</strong> If location data is still present — or if the file is in a format the app cannot inspect — the upload is refused rather than sent.</li>
+    </ul>
+    <p>This removes location metadata. It cannot remove what a photograph shows: a picture of your own front door still shows your front door.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Anonymous reports</h2>
+    <p>You can post without your name. Anonymity is public-facing and real: your name and profile are stripped before a report leaves our database, so no other user, and no city official, can see who posted it.</p>
+    <p><strong>Moderators can still see who posted an anonymous report.</strong> This is deliberate — without it, anonymity would be a free pass for abuse, and a noticeboard that cannot deal with abuse stops being useful to anyone. We are telling you this rather than letting you assume otherwise.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Notifications</h2>
+    <p>If you turn on notifications, we store a push token for each device, your chosen radius and categories, and your quiet hours. A notification carries only the category and title of a report — never a description, an address, or who filed it — because notifications appear on a lock screen anyone nearby can read.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Who can see what</h2>
+    <ul class="body">
+      <li><strong>Other residents</strong> see reports in their city, with the author hidden on anonymous ones.</li>
+      <li><strong>Verified city officials</strong> see reports in their own city and can post status updates on them. They see the same author information everyone else does.</li>
+      <li><strong>Moderators</strong> see flagged content and the accounts behind it, in order to act on abuse.</li>
+      <li><strong>Nobody else.</strong> We do not sell data, and we do not share it with advertisers or data brokers.</li>
+    </ul>
+    <p>We use Supabase to host the database, file storage and authentication, and Expo's push service to deliver notifications. These are processors acting on our instructions, not parties we sell data to.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">How long things last</h2>
+    <p>Reports are designed to disappear. Most expire on a timer set by their category — a traffic report in a couple of hours, a road closure when the event ends — and the ones that do not, such as a pothole, stay until somebody marks them resolved.</p>
+    <p>Reports removed by moderation are archived rather than deleted, so there is a record of the decision. Account data is kept until you delete your account.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Deleting your account</h2>
+    <p>Profile → Delete account. You type <strong>DELETE</strong> to confirm, and then it happens: your reports, comments, confirmations, flags, photos, videos, notification settings and blocked accounts are removed. There is no grace period and no way to recover it.</p>
+    <p>Two consequences worth knowing before you press it. Comments other people left on your reports go too, because the reports do. And reports a city department has already responded to are removed along with everything else.</p>
+    <h3>Getting a copy first</h3>
+    <p>Profile → Download my data gives you everything we hold on you as a JSON file: your account, every report, comment and confirmation, your notification settings, and the list of accounts you have blocked. Worth doing before you delete, because deletion cannot be undone.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Your choices</h2>
+    <ul class="body">
+      <li>Post anonymously, per report.</li>
+      <li>Share your own position, per report — off unless you turn it on.</li>
+      <li>Turn notifications off entirely, or narrow them by distance, category and quiet hours.</li>
+      <li>Block another account, which hides comments in both directions.</li>
+      <li>Delete your account, in the app, at any time.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">Children</h2>
+    <p>Urban Report is not directed at children under 13, and we do not knowingly collect their information. If you believe a child has created an account, contact us and we will remove it.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">Changes</h2>
+    <p>If this policy changes in a way that affects what we collect or who can see it, we will update the date at the top of this page and say so in the app before the change takes effect.</p>
+  </section>
+
+  <section class="contact">
+    <h2 class="section-title" style="border-top:0; padding-top:0;">Contact</h2>
+    <p>Urban Report App is the controller of the data described here. For questions about this policy, to request a copy of your data, or to ask us to delete it:</p>
+    <div class="addr">Entitycorpamerica@gmail.com</div>
+  </section>
+
+  <footer>
+    <span>Urban Report</span>
+    <span>Privacy Policy v1.0</span>
+    <span>19 September 2026</span>
+  </footer>
+</div>
+</body>
+</html>
